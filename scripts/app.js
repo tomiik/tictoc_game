@@ -1,36 +1,55 @@
 
 $(document).ready(function(){
 	$(".box").on("click", function(){
+		console.log(this);
 		if(	$(".player_o").hasClass("current") || $(".player_x").hasClass("current")){
 			id=$(this).attr("id");
 			rowIndex=id.slice(0,1);
+
+			// mark cliked box
 			mark(this);
 			var winner = "";
+
+			// check winner
 			winner = check(3);
+
 			if(winner == ""){
+				// check draw
 				winner = isDraw(3);
-				console.log("drawcheck:" + winner);
+				//console.log("drawcheck:" + winner);
 			}
-			console.log("winner:" + winner);
+			//console.log("winner:" + winner);
 			if(winner != ""){
+				// if there is winner , terminate game
 				end(winner);
 			}
 
-			if($(".cpuoff") == []){
-				cpu_random();
+			// if x player is cpu, cpu put x at random
+			if( $(".player_x").hasClass("current") && !$("span#mode").hasClass("cpuoff")){
+				cpu_random(3);
 			}
 		};
 	});
 });
 
-function clicked(){
-	
+
+// put x at random box
+function cpu_random(size){
+	size = parseInt(size);
+	boxes = $(".box");
+	while(true){
+		box = boxes[Math.floor(Math.random() * size * size)];
+		box = $(box);
+		console.log(box);
+		if(!(box.hasClass("marked_o") || box.hasClass("marked_x")))
+		{
+				box.trigger("click");
+				return;
+		}
+	}
 }
 
-function cpu_random(){
-
-}
-
+// reset game
 function reset(){
 	console.log("reset()");
 	$(".player_o").removeClass("winner");
@@ -47,6 +66,7 @@ function reset(){
 	return;
 }
 
+// terminate game
 function end(winner){
 	console.log("end()");
 	if(winner == "o"){
@@ -76,6 +96,7 @@ function end(winner){
 	$(".player_x").removeClass("current");
 }
 
+// mark element
 function mark(element){
 	if(!($(element).hasClass("marked_o") || $(element).hasClass("marked_x")))
 	{
@@ -87,8 +108,9 @@ function mark(element){
 	}
 }
 
+// change turn
 function player(){
-	console.log($("player_o"));
+	//console.log($("player_o"));
 	$(".player_o").toggleClass("current");
 	$(".player_x").toggleClass("current");
 
@@ -100,6 +122,7 @@ function player(){
 	}
 }
 
+// check winner
 function check(size){
 	var object = {};
 	$.each($(".box"),function(i,e){
@@ -109,25 +132,25 @@ function check(size){
 	var winner = '';
 	for(var i = 1 ; i <= parseInt(size); i++ ){
 		winner = check_row(i,object);
-		console.log("winner-r:"+ winner);
+		//console.log("winner-r:"+ winner);
 		if(winner != ''){
 			break;
 		}
 
 		winner = check_col(i,object);
-		console.log("winner-c:"+ winner);
+		//console.log("winner-c:"+ winner);
 		if(winner != ''){
 			break;
 		}
 	}
 	if(winner == ""){
 		winner = check_cross(object);
-		console.log("winner-cr:"+ winner);
+		//console.log("winner-cr:"+ winner);
 	}
 	return winner;
 }
 
-
+// check draw
 function isDraw(size){
 	size = parseInt(size);
 	var count = "";
@@ -145,6 +168,7 @@ function isDraw(size){
 	}
 }
 
+//check draw row
 function check_row(r,obj){
 	if(obj[r + "-1"] == 'o' && obj[r + "-2"] == 'o' && obj[r + "-3"] == 'o'){
 		return 'o';
@@ -155,6 +179,7 @@ function check_row(r,obj){
 	return "";
 }
 
+// check draw col
 function check_col(c,obj){
 	if(obj["1-" + c] == 'o' && obj["2-" + c] == 'o' && obj["3-" + c] == 'o'){
 		return 'o';
@@ -165,6 +190,7 @@ function check_col(c,obj){
 	return "";
 }
 
+// check draw cross
 function check_cross(obj){
 	if(obj["1-1"] == 'o' && obj["2-2"] == 'o' && obj["3-3"] == 'o'){
 		return 'o';
@@ -178,6 +204,7 @@ function check_cross(obj){
 	return "";
 }
 
+// toggle cpu
 function toggleCpu(){
 	$("#mode").toggleClass("cpuoff");
 }
