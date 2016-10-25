@@ -1,11 +1,15 @@
+body {
+  background-color: white; }
+
 #header {
   text-align: center; }
 
 #player {
-  text-align: center; }
+  text-align: center;
+  width: 100%;
+  margin: 0 auto; }
   #player .player {
-    border-style: solid;
-    width: 500px;
+    width: 100%;
     display: flex;
     margin: 0 auto; }
   #player .player_o {
@@ -13,34 +17,54 @@
     height: 100px;
     border-style: solid;
     margin: 3px; }
-  #player .current {
-    background-color: gray;
-    border-color: blue; }
   #player .player_x {
     width: 100px;
     height: 100px;
     border-style: solid;
     margin: 3px; }
-
-* {
-  border-style: solid; }
+  #player .current {
+    background-color: gray;
+    border-color: blue; }
+  #player .winner {
+    background-color: blue; }
+  #player .loser {
+    background-color: red; }
 
 #board {
-  height: 350px;
-  margin: 0 auto; }
+  color: black;
+  border-style: solid;
+  border-width: 10px;
+  border-radius: 20px;
+  height: 470px;
+  width: 470px;
+  margin: 0 auto;
+  margin-top: 2em; }
   #board .outerBox {
     margin-top: 2px;
     margin: 0 auto;
-    width: 400px; }
-  #board .box {
-    width: 100px;
-    height: 100px;
-    border-color: blue;
+    width: 450px;
+    height: 450px; }
+  #board .box-wrapper {
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-color: black;
+    background-color: black;
     border-width: 1px;
     border-style: solid;
     display: inline-block;
     border-width: 10px;
     float: left; }
+    #board .box-wrapper .box {
+      margin: 0 auto;
+      width: 130px;
+      height: 130px;
+      border-color: white;
+      background-color: white;
+      border-radius: 10px;
+      border-width: 1px;
+      border-style: solid;
+      border-width: 10px; }
   #board .row {
     clear: left; }
   #board .marked_o {
@@ -53,12 +77,16 @@
     background-repeat: no-repeat; }
 
 #menu {
-  position: relative; }
-  #menu input {
-    position: absolute;
+  text-align: center; }
+  #menu h2 {
     left: 0;
     right: 0;
     margin: 0 auto;
-    margin-top: 10em; }
+    margin-top: 2em; }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
 
 /*# sourceMappingURL=app.css.map */

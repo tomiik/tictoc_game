@@ -1,13 +1,20 @@
+$background-color: white;
+$board-border-color: black;
+body {
+	background-color: $background-color;
+}
+
 #header{
 	text-align: center;
 }
 
 #player{
 	text-align: center;
+	width: 100%;
+	margin:0 auto;
 
 	.player{
-		border-style: solid;
-		width: 500px;
+		width: 100%;
 		display: flex;
 		margin: 0 auto;
 	}
@@ -19,10 +26,6 @@
 		margin: 3px;
 	}
 
-	.current {
-		background-color: gray;
-		border-color: blue;
-	}
 	.player_x{
 		width: 100px;
 		height: 100px;
@@ -30,31 +33,62 @@
 		margin: 3px;
 	}
 
-}
-*{
-	border-style: solid;
+	.current {
+		background-color: gray;
+		border-color: blue;
+	}
+
+	.winner {
+		background-color: blue;
+	}
+	.loser {
+		background-color: red;
+	}
 }
 #board{
-	height: 350px;
+	color: $board-border-color;
+	border-style: solid;
+	border-width: 10px;
+	border-radius: 20px;
+	height: 470px;
+	width: 470px;
 	margin: 0 auto;
+	margin-top: 2em;
 	.outerBox{
 		margin-top: 2px;
 		margin:0 auto;
-		width: 400px;
+		width: 450px;
+		height:450px;
 	}
 
-	.box{
-		width: 100px;
-		height: 100px;
+	.box-wrapper {
+		margin:0 auto;
+		width: 150px;
+		height: 150px;
 		//height:30vh;
 		//width:30vh;
-		border-color: blue;
+		border-color: $board-border-color;
+		background-color: $board-border-color;
 		border-width: 1px;
 		border-style: solid;
 		display: inline-block;
 		border-width: 10px;
 		float:left;
+		.box{
+			margin:0 auto;
+			width: 130px;
+			height: 130px;
+			//height:30vh;
+			//width:30vh;
+			border-color: $background-color;
+			background-color: $background-color;
+			border-radius: 10px;
+			border-width: 1px;
+			border-style: solid;
+			border-width: 10px;
+		}
 	}
+
 
 	.row{
 		clear:left;
@@ -76,12 +110,17 @@
 }
 
 #menu {
-	position: relative;
-	input {
-		position: absolute;
+	text-align:center;
+	h2 {
 		left:0;
 		right: 0;
 		margin: 0 auto;
-		margin-top: 10em;
+		margin-top: 2em;
 	}
+}
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
