@@ -56,6 +56,8 @@ function reset(){
 	$(".player_x").removeClass("winner");
 	$(".player_o").removeClass("loser");
 	$(".player_x").removeClass("loser");
+	$(".player_o").removeClass("draw");
+	$(".player_x").removeClass("draw");
 	$(".result_o").text("");
 	$(".result_x").text("");
 	$(".player_o").removeClass("current");
