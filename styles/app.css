@@ -47,6 +47,8 @@ body {
     margin-top: 1em;
     font-size: 1.5em;
     text-shadow: 0px 0px 3px #000; }
+    #player .result_o .cpuoff, #player .result_x .cpuoff {
+      opacity: 0; }
   #player .current {
     border-color: #eee; }
   #player .winner {

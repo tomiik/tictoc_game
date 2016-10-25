@@ -15,9 +15,21 @@ $(document).ready(function(){
 			if(winner != ""){
 				end(winner);
 			}
+
+			if($(".cpuoff") == []){
+				cpu_random();
+			}
 		};
 	});
 });
+
+function clicked(){
+	
+}
+
+function cpu_random(){
+
+}
 
 function reset(){
 	console.log("reset()");
@@ -164,5 +176,8 @@ function check_cross(obj){
 		return 'x';
 	}
 	return "";
+}
 
+function toggleCpu(){
+	$("#mode").toggleClass("cpuoff");
 }
