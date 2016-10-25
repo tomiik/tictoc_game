@@ -2,8 +2,8 @@
 <head>
 	<title>DOM Manipulation using JS</title>
 	<link rel="stylesheet" href="./styles/app.css">
+	<link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
 	<script src="./scripts/jquery.js"></script>
-
 </head>
 <body>
 	<section id="header">
@@ -12,10 +12,14 @@
 	<section id="player">
 		<div class="player">
 			<div class="player_o current">
-				<div class="marked_o">o</div>
+				<div class="marked_o">
+					<p class="result_o"></p>
+				</div>
 			</div>
 			<div class="player_x">
-				<div class="marked_x">x</div>
+				<div class="marked_x">
+					<p class="result_x"></p>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -58,10 +62,9 @@
 	</section>
 	<br>
 	<section id="menu">
-		<h2 onclick="reset()">
-			restart
-    </he>
-
+			<h2 onclick="reset()">
+				restart
+	    </h2>
 	</section>
 
 	<script src="scripts/app.js"></script>

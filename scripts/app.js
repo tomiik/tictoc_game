@@ -7,6 +7,10 @@ $(document).ready(function(){
 			mark(this);
 			var winner = "";
 			winner = check(3);
+			if(winner == ""){
+				winner = isDraw(3);
+				console.log("drawcheck:" + winner);
+			}
 			console.log("winner:" + winner);
 			if(winner != ""){
 				end(winner);
@@ -21,8 +25,8 @@ function reset(){
 	$(".player_x").removeClass("winner");
 	$(".player_o").removeClass("loser");
 	$(".player_x").removeClass("loser");
-	$(".player_o").text("o");
-	$(".player_x").text("x");
+	$(".result_o").text("");
+	$(".result_x").text("");
 	$(".player_o").removeClass("current");
 	$(".player_x").removeClass("current");
 	$(".player_o").addClass("current");
@@ -36,18 +40,28 @@ function end(winner){
 	if(winner == "o"){
 		$(".player_o").addClass("winner");
 		$(".player_x").addClass("loser");
-		$(".player_o").text("o win");
-		$(".player_x").text("x lose");
+		$(".result_o").text("Win");
+		$(".result_x").text("Lose");
+		$(".player_o").css({"color": "blue"});
+		$(".player_x").css({"color": "red"});
 
-	}else if(winner = "x"){
+	}else if(winner == "x"){
 		$(".player_o").addClass("loser");
 		$(".player_x").addClass("winner");
-		$(".player_o").text("o lose");
-		$(".player_x").text("x win");
+		$(".result_o").text("Lose");
+		$(".result_x").text("Win");
+		$(".player_o").css({"color": "red"});
+		$(".player_x").css({"color": "blue"});
+	}else if(winner == "d"){
+		$(".player_o").addClass("draw");
+		$(".player_x").addClass("draw");
+		$(".result_o").text("Draw");
+		$(".result_x").text("Draw");
+		$(".player_o").css({"color": "green"});
+		$(".player_x").css({"color": "green"});
 	}
 	$(".player_o").removeClass("current");
 	$(".player_x").removeClass("current");
-
 }
 
 function mark(element){
@@ -99,6 +113,24 @@ function check(size){
 		console.log("winner-cr:"+ winner);
 	}
 	return winner;
+}
+
+
+function isDraw(size){
+	size = parseInt(size);
+	var count = "";
+	$.each($(".box"),function(i,e){
+		temp = ($(e).hasClass("marked_o")? "o" : $(e).hasClass("marked_x")? "x": "");
+		console.log("isDraw:" + temp);
+		if((temp == "o" || temp == "x")){
+			count++;
+		}
+	});
+	if(count == size * size){
+		return "d";
+	}else{
+		return "";
+	}
 }
 
 function check_row(r,obj){
